@@ -87,9 +87,13 @@
             password: password
           },
           success: function (backData) {
+            // 先修改模态框内容,在弹出模态框
             $('#myModal .modal-body').text(backData.msg);
             $('#myModal').modal();
             if (backData.code == 200) {
+              // 把返回的token保存到本地存储
+              localStorage.setItem('token',backData.token);
+
               // 模态框关闭的时候触发跳转到首页
               $('#myModal').on('hidden.bs.modal', function (e) {
                 // 1.6如果登录成功就跳转到首页
